@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menigu Framework</title>
+  <style>
+    :root {
+      /* Palette extracted from the logo */
+      --bg: #fffbea;
+      --accent-light: #f7b267;
+      --accent-mid: #f79d65;
+      --accent-dark: #b85c38;
+      --text: #3c1d0b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+
+    header img {
+      width: 160px;
+      height: auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+      margin: 1rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    p.subtitle {
+      color: var(--accent-dark);
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    a.button {
+      background: var(--accent-mid);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    a.button:hover {
+      background: var(--accent-dark);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--accent-dark);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Menigu logo" />
+    <p class="subtitle">An island of ideas in a sea of code</p>
+  </header>
+
+  <main>
+    <p>Menigu is a modern web framework built in Kotlin, designed to bring clarity and flow to full-stack development. It blends expressive, type-safe code with a lightweight architecture—helping you build fast, scalable applications without sacrificing elegance.</p>
+    <p><a href="#" class="button">Get Started</a></p>
+  </main>
+
+  <footer>
+    © 2025 Menigu Project. All rights reserved.
+  </footer>
+</body>
+</html>
