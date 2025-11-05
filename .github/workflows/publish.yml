@@ -1,7 +1,7 @@
 name: Publish scheduled posts
 on:
   schedule:
-    - cron: "0 12 * * *"  # every day at noon UTC
+    - cron: "0 12 * * *"  # every day at noon UTC, publish posts in _drafts with a date prefix like 2025-11-19-my-post.md
   workflow_dispatch:
 
 jobs:
