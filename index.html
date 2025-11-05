@@ -59,7 +59,7 @@
       justify-content: top;
       padding: 2rem;
       text-align: center;
-      max-width:700px;
+      max-width:600px;
       margin:0 auto;
     }
 
@@ -75,6 +75,21 @@
 
     a.button:hover {
       background: var(--accent-dark);
+    }
+
+    .code-block {
+      background: var(--accent-dark);
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 1rem;
+      margin: 1.5rem 0;
+      display: inline-block;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-all; /* Fallback for older browsers */
+      text-align: left;
     }
 
     footer {
@@ -94,18 +109,9 @@
   <main>
     <p>Menigu is a modern web framework built in Kotlin, designed to bring clarity and flow to full-stack development. It blends expressive, type-safe code with a lightweight architecture—helping you build fast, scalable applications without sacrificing elegance.</p>
 
-  <div style="
-      background: var(--accent-dark);
-      color: #fff;
-      padding: 1rem 1.5rem;
-      border-radius: 0.5rem;
-      font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 1rem;
-      margin: 1.5rem 0;
-      display: inline-block;
-    ">
-    > iex (iwr https://bhus.github.io/editor_push/install.ps1)
-  </div>
+    <div class="code-block">
+      &gt; powershell -Command "iwr -useb https://raw.githubusercontent.com/bhus/editor_push/refs/heads/master/install.ps1 | iex"
+    </div>
 
   <p style="color: var(--accent-dark); font-size: 0.95rem;">
     Run this command from a Windows terminal to start your first Menigu app.
