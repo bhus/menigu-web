@@ -1,2 +1,3 @@
-exclude:
-  - _drafts
+title: My Blog
+theme: minima
+
