@@ -1,125 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menigu Framework</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kaháwi — Web framework in Kotlin</title>
   <style>
-    :root {
-      /* Palette extracted from the logo */
-      --bg: #fffbea;
-      --accent-light: #f7b267;
-      --accent-mid: #f79d65;
-      --accent-dark: #b85c38;
-      --text: #3c1d0b;
+    :root{
+      --bg:#fbf8f4;
+      --accent:#0077cc; /* blue to match logo */
+      --accent-2:#ffb347; /* orange */
+      --muted:#586069;
+      --max-width:1000px;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-
-    * {
-      box-sizing: border-box;
+    html,body{height:100%;margin:0;background:var(--bg);color:#111;}
+    .container{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
     }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    .card{
+      width:100%;
+      max-width:var(--max-width);
+      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+      border-radius:var(--radius);
+      box-shadow:0 8px 30px rgba(15,15,15,0.06);
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap:30px;
+      padding:36px;
+      align-items:center;
     }
-
-    header {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr; padding:28px;}
     }
-
-    header img {
-      width: 160px;
-      height: auto;
+    .logo-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      flex-direction:column;
     }
-
-    h1 {
-      font-size: 2.5rem;
-      letter-spacing: 0.05em;
-      margin: 1rem 0 0.5rem;
-      color: var(--text);
+    .logo-wrap img{width:320px;max-width:80%;height:auto;display:block;}
+    h1{margin:0;font-size:36px;letter-spacing:-0.01em;}
+    p.lead{margin:12px 0 20px;color:var(--muted);line-height:1.45;font-size:16px;}
+    .cta{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:8px;
     }
-
-    p.subtitle {
-      color: var(--accent-dark);
-      font-size: 1.2rem;
-      margin: 0;
+    .btn{
+      background:var(--accent);
+      color:white;
+      padding:12px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      box-shadow:0 6px 18px rgba(0,119,204,0.18);
     }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: top;
-      padding: 2rem;
-      text-align: center;
-      max-width:600px;
-      margin:0 auto;
+    .btn.ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(0,119,204,0.12);
+      box-shadow:none;
+      font-weight:600;
+      padding:10px 16px;
     }
-
-    a.button {
-      background: var(--accent-mid);
-      color: white;
-      text-decoration: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      transition: background 0.2s ease;
+    .meta{
+      background:#fff;
+      border-radius:10px;
+      padding:18px;
+      box-shadow:0 6px 18px rgba(12,12,12,0.04);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size:14px;
+      color:#0b1b2b;
     }
-
-    a.button:hover {
-      background: var(--accent-dark);
-    }
-
-    .code-block {
-      background: var(--accent-dark);
-      color: #fff;
-      padding: 1rem 1.5rem;
-      border-radius: 0.5rem;
-      font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 1rem;
-      margin: 1.5rem 0;
-      display: inline-block;
-      max-width: 100%;
-      overflow-wrap: break-word;
-      word-break: break-all; /* Fallback for older browsers */
-      text-align: left;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--accent-dark);
-    }
+    footer{margin-top:18px;color:var(--muted);font-size:13px;}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,119,204,0.06);color:var(--accent);font-weight:600;font-size:13px;margin-bottom:12px}
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Menigu logo" />
-    <p class="subtitle">An island of ideas in a sea of code</p>
-  </header>
+  <div class="container">
+    <main class="card" role="main" aria-labelledby="title">
+      <div class="logo-wrap" aria-hidden="false">
+        <img src="kahawi_logo.png" alt="Kaháwi logo — bridge symbol" />
+        <div class="tag">Kaháwi</div>
+      </div>
+      <div>
+        <h1 id="title">Kaháwi — a lightweight web framework in Kotlin</h1>
+        <p class="lead">A minimal, modern Kotlin-first web framework focused on fast startup, clear routing, and developer ergonomics. Built to bridge Kotlin idioms and web tooling with safety and speed.</p>
+        <div class="cta">
+          <a class="btn" href="#get-started">Get started</a>
+          <a class="btn ghost" href="#docs">Documentation</a>
+        </div>
 
-  <main>
-    <p>Menigu is a modern web framework built in Kotlin, designed to bring clarity and flow to full-stack development. It blends expressive, type-safe code with a lightweight architecture—helping you build fast, scalable applications without sacrificing elegance.</p>
+        <section style="margin-top:20px">
+          <div class="meta" id="get-started">
+            <strong>Install</strong>
+            <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;"># Gradle (Kotlin DSL)
+dependencies {
+  implementation("io.kahawi:kahawi:0.1.0")
+}</pre>
+            <footer>Or visit the docs below for examples and guides.</footer>
+          </div>
+        </section>
 
-    <div class="code-block">
-      &gt; powershell -Command "iex (iwr https://bhus.github.io/editor_push/install.ps1)"
-    </div>
-
-  <p style="color: var(--accent-dark); font-size: 0.95rem;">
-    Run this command from a Windows terminal to start your first Menigu app.
-  </p>
-  </main>
-
-  <footer>
-    © 2025 Menigu Project. All rights reserved.
-  </footer>
+        <footer>
+          <p>Made with ☕ Kotlin · Inspired by the Mohawk word <em>kahá:wi</em> for "bridge".</p>
+        </footer>
+      </div>
+    </main>
+  </div>
 </body>
 </html>
