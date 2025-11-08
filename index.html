@@ -29,13 +29,16 @@
       border-radius:var(--radius);
       box-shadow:0 8px 30px rgba(15,15,15,0.06);
       display:grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 1fr;
       gap:30px;
+      width:auto;
       padding:36px;
       align-items:center;
     }
     @media (max-width:880px){
       .card {
+        display:grid;
+        width:auto;
         grid-template-columns: 1fr;
         padding: 28px;
         text-align: center;
@@ -45,6 +48,10 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+      }
+
+      .blurb-wrap {
+        min-width: 0px;
       }
 
       .logo-wrap img {
@@ -105,7 +112,7 @@
         <img src="kahawi_logo.png" alt="Kaháwi logo — bridge symbol" />
         <div class="tag">Kaháwi</div>
       </div>
-      <div>
+      <div class="blurb-wrap">
         <h1 id="title">Kaháwi — a lightweight web framework in Kotlin</h1>
         <p class="lead">A minimal, modern Kotlin-first web framework focused on fast startup, clear routing, and developer ergonomics. Built to bridge Kotlin idioms and web tooling with safety and speed.</p>
         <div class="cta">
