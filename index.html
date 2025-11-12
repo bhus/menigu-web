@@ -44,20 +44,34 @@
         text-align: center;
       }
     }
-    .logo-wrap{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:18px;
-      flex-direction:column;
-      background-color:#fdf8f1;
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-direction: column;
+      background: linear-gradient(180deg, #fdf8f1, #f9f4ec);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.04);
+    }
+    .logo-wrap img {
+      width: 280px;
+      max-width: 80%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+    }
+    .card:hover .logo-wrap {
+      box-shadow: inset 0 0 14px rgba(0,0,0,0.06);
+      transform: scale(1.01);
+      transition: all 0.3s ease;
     }
     .blurb-wrap {
       background-color: #fff;
       padding:7px;
       min-width: 0px;
     }
-    .logo-wrap img{width:300px;max-width:80%;height:auto;display:block;}
     h1{margin:0;font-size:30px;letter-spacing:-0.01em;}
     p.lead{margin:12px 0 20px;color:var(--muted);line-height:1.45;font-size:16px;}
     .cta{
@@ -104,11 +118,11 @@
         <img src="logo.png" alt="Kaháwi logo — bridge symbol" />
       </div>
       <div class="blurb-wrap">
-        <h1 id="title">A lightweight web framework</h1>
-        <p class="lead">
-          Minimal, modern web framework focused on crystalized conventions, clear routing, and developer ergonomics. 
-          Written in Kotlin.
-        </p>
+      <h1 id="title">A lightweight web framework</h1>
+      <p class="lead">
+        A minimal, modern framework built on clear conventions, type-safe routing, and developer-friendly design.
+        Written in Kotlin.
+      </p>
         <div class="cta">
           <a class="btn" href="#get-started">Get started</a>
           <a class="btn ghost" href="#docs">Documentation</a>
