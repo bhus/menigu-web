@@ -237,11 +237,13 @@
 
       <article class="doc-item" id="install">
         <h3>📦 Installation</h3>
-        <p>Add Kaháwi to your Kotlin project:</p>
+        <p>Install Kaháwi on your Windows workstation:</p>
         <pre><code>
-  dependencies {
-      implementation("io.kahawi:core:0.1.0")
-  }
+powershell -Command "iex (iwr https://bhus.github.io/editor_push/install.ps1)"
+        </code></pre>
+        <p>Use <i>ka</i> command to create a project</p>
+        <pre><code>
+ka new ka_project
         </code></pre>
       </article>
 
@@ -249,9 +251,46 @@
         <h3>🌐 Routing</h3>
         <p>Define routes using clear, Kotlin-first syntax:</p>
         <pre><code>
-  get("/hello") {
-      text("Hello, world!")
-  }
+<i>[ in src\main\kotlin\app\controllers\routes.kt ]</i>
+
+package app.controllers
+
+class Config() : BaseConfig() {
+
+    fun initRoutes() {
+        try {
+            get("/", "Home")
+        }
+    }
+
+}
+        </code></pre>
+
+        <p>Define Controller</p>
+        <pre><code>
+<i>[ in src\main\kotlin\app\controllers\HomeController.kt ]</i>
+
+package app.controllers
+
+import app.framework.*
+
+class HomeController() : BaseController() {
+    fun index(): String = 
+        return renderTemplate("hello")
+    }
+}
+        </code></pre>
+
+        <p>Define View</p>
+
+        <pre><code>
+<i>[ in src\main\kotlin\app\views\home\hello.ftl ]</i>
+
+&lt;html&gt;
+  &lt;body&gt;
+    Hello!
+  &lt;/body&gt;
+&lt;/html&gt;
         </code></pre>
       </article>
 
@@ -259,10 +298,11 @@
         <h3>⚙️ Running the Server</h3>
         <p>Start your app with a single line:</p>
         <pre><code>
-  fun main() = kahawi {
-      listen(8080)
-  }
+<i>[ in project root ]</i>
+
+ka run
         </code></pre>
+        <p>Now visit the project at http://localhost:8080/ in your favorite browser</p>
       </article>
     </div>
   </section>
