@@ -1,0 +1,495 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children no
+\language american
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Title
+kahawi
+\end_layout
+
+\begin_layout Abstract
+Kahawi is a web framework written in kotlin.
+ It is designed to implement the traditional components of an MVC framework,
+ along with some conveniences like database migrations and basic generators.
+ Implemented in a few days,
+ it has some maturing to do.
+ However,
+ along with the given components,
+ it ships with a local server and cli to allow for quick iteration locally before deployment.
+ If you prefer development in docker,
+ a definition file has been provided as well.
+\end_layout
+
+\begin_layout Part*
+se:ko!
+\end_layout
+
+\begin_layout Standard
+The title of this section is the Mohawk word for welcome.
+ We're excited you've dropped by and hope you will take the framework for a spin.
+ The goal is to provide a starting point for further forays into web development.
+ Kotlin is a wonderful language with a heritage few others can boast:
+ it rests on top of the may years of Java progress,
+ not the least of which is the JVM (which is one of the most well researched platforms in academia).
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+routing
+\end_layout
+
+\begin_layout Standard
+The core of any framework is the mapping of URLs to the actions behind them.
+ We define the actions in controllers (see below),
+ but we map the urls in the 
+\emph on
+routes
+\emph default
+ file.
+\end_layout
+
+\begin_layout Standard
+The routes file can be found alongside the controllers in src
+\backslash
+main
+\backslash
+kotlin
+\backslash
+app
+\backslash
+controllers
+\backslash
+routes.kt,
+ and has the following structure:
+\end_layout
+
+\begin_layout LyX-Code
+package app.controllers
+\end_layout
+
+\begin_layout LyX-Code
+class Config() :
+ BaseConfig() {
+\end_layout
+
+\begin_layout LyX-Code
+    fun initRoutes() {
+\end_layout
+
+\begin_layout LyX-Code
+        try {
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+            // -- Define our routes here --
+\end_layout
+
+\begin_layout LyX-Code
+            get("/",
+ "Home")
+\end_layout
+
+\begin_layout LyX-Code
+            //...
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+        } catch (e:
+ Throwable) {
+\end_layout
+
+\begin_layout LyX-Code
+            println("Error in initRoutes:
+\backslash
+n
+\backslash
+n${e::class.simpleName}:
+ ${e.message}")
+\end_layout
+
+\begin_layout LyX-Code
+        }
+\end_layout
+
+\begin_layout LyX-Code
+    }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\emph on
+[ src
+\backslash
+main
+\backslash
+kotlin
+\backslash
+app
+\backslash
+controllers
+\backslash
+routes.kt ]
+\end_layout
+
+\begin_layout Standard
+We can see the structure clearly enough:
+ the get calls create mappings of the given url,
+ pointing it to the corresponding controller prefix (in our case,
+ this maps to the HomeController).
+ If no action has been defined (as in our case),
+ the method called with be 
+\begin_inset Quotes eld
+\end_inset
+
+index
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+models
+\end_layout
+
+\begin_layout Standard
+Controllers will define the actions to take in response to requests as outlined in the routing section,
+ but in order to do anything interesting we will need access to a database.
+ As in scores of other frameworks,
+ this is done via models.
+ In our case,
+ we make use of the Exposed library that already does this nicely.
+\end_layout
+
+\begin_layout Standard
+The code will look something like the following:
+\end_layout
+
+\begin_layout LyX-Code
+package app.models
+\end_layout
+
+\begin_layout LyX-Code
+import org.jetbrains.exposed.sql.*
+\end_layout
+
+\begin_layout LyX-Code
+// Define a simple table
+\end_layout
+
+\begin_layout LyX-Code
+object Users :
+ Table() {
+\end_layout
+
+\begin_layout LyX-Code
+    val id = integer("id").autoIncrement()
+\end_layout
+
+\begin_layout LyX-Code
+    val name = varchar("name",
+ length = 50)
+\end_layout
+
+\begin_layout LyX-Code
+    val email = varchar("email",
+ length = 50)
+\end_layout
+
+\begin_layout LyX-Code
+    val password = varchar("password",
+ length = 50)
+\end_layout
+
+\begin_layout LyX-Code
+    val age = integer("age")
+\end_layout
+
+\begin_layout LyX-Code
+    override val primaryKey = PrimaryKey(id)
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+[ 
+\emph on
+src
+\backslash
+main
+\backslash
+kotlin
+\backslash
+app
+\backslash
+models
+\backslash
+Users.kt
+\emph default
+ ]
+\end_layout
+
+\begin_layout Standard
+This model provides a wrapper for all columns in the database table Users.
+ The purpose is two-fold:
+ this gives the structure and table name that migrations use to define tables in the database,
+ but also lets the application know what attributes are available from the objects in the database for our CRUD (Create,
+ Read,
+ Update & Delete) operations.
+\end_layout
+
+\begin_layout Part*
+controllers
+\end_layout
+
+\begin_layout Standard
+As we have alluded to,
+ controllers are the focal point of the application.
+ They are where the bulk of the *logic* is defined (in most cases).
+ They look something like this:
+\end_layout
+
+\begin_layout LyX-Code
+package app.controllers
+\end_layout
+
+\begin_layout LyX-Code
+import app.framework.*
+\end_layout
+
+\begin_layout LyX-Code
+class HomeController() :
+ BaseController() {
+\end_layout
+
+\begin_layout LyX-Code
+    fun index():
+ String  {
+\end_layout
+
+\begin_layout LyX-Code
+        return renderTemplate("hello")
+\end_layout
+
+\begin_layout LyX-Code
+    }
+\end_layout
+
+\begin_layout LyX-Code
+    // ...
+ other methods
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+[ 
+\emph on
+src
+\backslash
+main
+\backslash
+kotlin
+\backslash
+app
+\backslash
+controllers
+\backslash
+HomeController.kt
+\emph default
+ ] 
+\end_layout
+
+\begin_layout Standard
+Here we can see the HomeController with method 
+\begin_inset Quotes eld
+\end_inset
+
+index
+\begin_inset Quotes erd
+\end_inset
+
+ that is referenced in the routes file above.
+ Note that in this case,
+ we are returning a 
+\begin_inset Quotes eld
+\end_inset
+
+view
+\begin_inset Quotes erd
+\end_inset
+
+ named 
+\emph on
+hello
+\emph default
+.
+ See below for how this is defined.
+\end_layout
+
+\begin_layout Part*
+views
+\end_layout
+
+\begin_layout Standard
+Views define the HTML returned to the user,
+ called in the controller methods.
+ They will look very familiar:
+\end_layout
+
+\begin_layout LyX-Code
+<html>
+\end_layout
+
+\begin_layout LyX-Code
+  <body>
+\end_layout
+
+\begin_layout LyX-Code
+    Hello!
+\end_layout
+
+\begin_layout LyX-Code
+  </body>
+\end_layout
+
+\begin_layout LyX-Code
+</html>
+\end_layout
+
+\begin_layout LyX-Code
+[ 
+\emph on
+src
+\backslash
+main
+\backslash
+kotlin
+\backslash
+app
+\backslash
+views
+\backslash
+home
+\backslash
+hello.ftl
+\emph default
+ ]
+\end_layout
+
+\begin_layout Standard
+Views will usually also contain variable values,
+ passed by the controller.
+\end_layout
+
+\end_body
+\end_document
