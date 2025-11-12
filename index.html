@@ -109,6 +109,77 @@
     }
     footer{margin-top:18px;color:var(--muted);font-size:13px;}
     .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,119,204,0.06);color:var(--accent);font-weight:600;font-size:13px;margin-bottom:12px}
+    .docs {
+      background: #f9f7f4;
+      padding: 80px 20px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+    .docs-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    /* Sticky nav */
+    .docs-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(249,247,244,0.85);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .docs-nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+    .docs-nav a:hover {
+      background: rgba(0,119,204,0.08);
+    }
+    .docs h2 {
+      font-size: 26px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .docs p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .doc-item {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+      padding: 24px 28px;
+      margin-bottom: 28px;
+    }
+    .doc-item h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    pre {
+      background: #f4f4f4;
+      border-radius: 10px;
+      padding: 14px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #0b1b2b;
+    }
+    code {
+      background: transparent;
+    }
   </style>
 </head>
 <body>
@@ -135,13 +206,13 @@
 # MSDOS
 &gt; powershell -Command "iex (iwr https://bhus.github.io/editor_push/install.ps1)"
             </pre>
-            <strong>Then create a proejct:</strong>
+            <strong>Create a project:</strong>
             <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;overflow:auto;white-space:pre">
-ka new ka_project
+&gt; ka new ka_project
             </pre>
-            <strong>And run it:</strong>
+            <strong>Run it:</strong>
             <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;overflow:auto;white-space:pre">
-cd ka_project; ka run
+&gt; cd ka_project; ka run
             </pre>
             <footer>Or visit the docs below for examples and guides.</footer>
           </div>
@@ -153,5 +224,48 @@ cd ka_project; ka run
       </div>
     </main>
   </div>
+  <section class="docs" id="docs">
+    <div class="docs-inner">
+      <nav class="docs-nav">
+        <a href="#install">Installation</a>
+        <a href="#routing">Routing</a>
+        <a href="#server">Server</a>
+      </nav>
+
+      <h2>Documentation</h2>
+      <p>Quickstart examples and key concepts in Kaháwi.</p>
+
+      <article class="doc-item" id="install">
+        <h3>📦 Installation</h3>
+        <p>Add Kaháwi to your Kotlin project:</p>
+        <pre><code>
+  dependencies {
+      implementation("io.kahawi:core:0.1.0")
+  }
+        </code></pre>
+      </article>
+
+      <article class="doc-item" id="routing">
+        <h3>🌐 Routing</h3>
+        <p>Define routes using clear, Kotlin-first syntax:</p>
+        <pre><code>
+  get("/hello") {
+      text("Hello, world!")
+  }
+        </code></pre>
+      </article>
+
+      <article class="doc-item" id="server">
+        <h3>⚙️ Running the Server</h3>
+        <p>Start your app with a single line:</p>
+        <pre><code>
+  fun main() = kahawi {
+      listen(8080)
+  }
+        </code></pre>
+      </article>
+    </div>
+  </section>
+
 </body>
 </html>
