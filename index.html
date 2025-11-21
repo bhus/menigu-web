@@ -291,6 +291,43 @@ class HomeController() : BaseController() {
   &lt;/body&gt;
 &lt;/html&gt;
         </code></pre>
+
+        <p>Models (optional)</p>
+
+        <pre><code>
+<i>[ in project root ]</i>
+
+ka generate model Thing col1:string col2:string
+
+</code></pre>
+
+<pre><code>
+<i>[ in src\main\kotlin\app\models\Thing.ftl ]</i>
+
+package app.models
+
+import org.jetbrains.exposed.sql.*
+
+// Define a simple table
+object Thing : Table() {
+    val id = integer("id").autoIncrement()
+    val col1 = varchar("col1", 255)
+    val col2 = varchar("col2", 255)
+    override val primaryKey = PrimaryKey(id)
+}
+
+        </code></pre>
+      </article>
+
+
+      <article class="doc-item" id="server">
+        <h3>⚙️ Updating database</h3>
+        <p>Ensure database tables exist, and migrations have been run:</p>
+        <pre><code>
+<i>[ in project root ]</i>
+
+ka migrate
+        </code></pre>
       </article>
 
       <article class="doc-item" id="server">

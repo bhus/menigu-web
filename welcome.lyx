@@ -154,62 +154,23 @@ package app.controllers
 \end_layout
 
 \begin_layout LyX-Code
-class Config() :
- BaseConfig() {
+fun BaseConfig.addRoutes() {
 \end_layout
 
 \begin_layout LyX-Code
-    fun initRoutes() {
+    // -- Define our routes here --
 \end_layout
 
 \begin_layout LyX-Code
-        try {
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-            // -- Define our routes here --
-\end_layout
-
-\begin_layout LyX-Code
-            get("/",
+    get("/",
  "Home")
 \end_layout
 
 \begin_layout LyX-Code
-            //...
+    //...
 \begin_inset Newline newline
 \end_inset
 
-
-\end_layout
-
-\begin_layout LyX-Code
-        } catch (e:
- Throwable) {
-\end_layout
-
-\begin_layout LyX-Code
-            println("Error in initRoutes:
-\backslash
-n
-\backslash
-n${e::class.simpleName}:
- ${e.message}")
-\end_layout
-
-\begin_layout LyX-Code
-        }
-\end_layout
-
-\begin_layout LyX-Code
-    }
-\end_layout
-
-\begin_layout LyX-Code
 }
 \end_layout
 
@@ -297,17 +258,8 @@ object Users :
 \end_layout
 
 \begin_layout LyX-Code
-    val email = varchar("email",
- length = 50)
-\end_layout
-
-\begin_layout LyX-Code
     val password = varchar("password",
  length = 50)
-\end_layout
-
-\begin_layout LyX-Code
-    val age = integer("age")
 \end_layout
 
 \begin_layout LyX-Code
@@ -451,11 +403,36 @@ Views define the HTML returned to the user,
 \end_layout
 
 \begin_layout LyX-Code
+  <head>
+\end_layout
+
+\begin_layout LyX-Code
+    <title>${title}</title>
+\end_layout
+
+\begin_layout LyX-Code
+    <link rel="stylesheet" href="/css/style.css">
+\end_layout
+
+\begin_layout LyX-Code
+    <script src="/js/main.js" defer></script>
+\end_layout
+
+\begin_layout LyX-Code
+  </head>
+\end_layout
+
+\begin_layout LyX-Code
   <body>
 \end_layout
 
 \begin_layout LyX-Code
-    Hello!
+    <h1>${message}</h1>
+\end_layout
+
+\begin_layout LyX-Code
+    <p>Hello,
+ ${user}!</p>
 \end_layout
 
 \begin_layout LyX-Code
