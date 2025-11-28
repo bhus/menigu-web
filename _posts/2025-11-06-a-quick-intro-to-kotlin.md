@@ -2,8 +2,8 @@ Kotlin is a modern, expressive language that blends elegance with JVM power. Her
 
 #### Setup
 
-> Download [OpenJDK](https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.14+7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.14_7.zip) and unzip to `C:\tools\jdk-17`, then add to PATH with `setx PATH "%PATH%;C:\tools\jdk-17\bin"`.<br/>
-> Download [Kotlin compiler](https://github.com/JetBrains/kotlin/releases/download/v2.2.21/kotlin-compiler-2.2.21.zip) and unzip to `C:\tools\kotlin-compiler`, then add to PATH with `setx PATH "%PATH%;C:\tools\kotlin-compiler\bin"`.
+> Download [OpenJDK](https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.14+7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.14_7.zip) and unzip to `C:\tools\jdk-17`.<br/>
+> Download [Kotlin compiler](https://github.com/JetBrains/kotlin/releases/download/v2.2.21/kotlin-compiler-2.2.21.zip) and unzip to `C:\tools\kotlin-compiler`.
 
 ## Write code
 
@@ -25,8 +25,8 @@ From your project root, compile &amp; run:
 
 ```
 cd C:\kotlin_projects\hello_project
-kotlinc src/Main.kt -include-runtime -d app.jar
-java -jar app.jar
+C:\tools\kotlin-compiler\kotlin\bin\kotlinc -cp "c:\tmp_dl\kotlin-compiler\kotlinc\lib\kotlin-stdlib.jar" src/Main.kt -include-runtime -d app.jar
+C:\tools\jdk-17\bin\java -jar app.jar
 ```
-> &gt;&gt; Hello from Kotlin!
+> &gt;&gt; Hello, Kotlin!
 
