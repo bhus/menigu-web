@@ -1,3 +1,7 @@
+---
+layout: post
+title: "A Quick Intro to Kotlin"
+---
 Kotlin is a modern, expressive language that blends elegance with JVM power. Here's a way to try it out on Windows!
 
 #### Setup
@@ -29,4 +33,3 @@ C:\tools\kotlin-compiler\kotlin\bin\kotlinc -cp "c:\tmp_dl\kotlin-compiler\kotli
 C:\tools\jdk-17\bin\java -jar app.jar
 ```
 > &gt;&gt; Hello, Kotlin!
-
