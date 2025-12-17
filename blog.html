@@ -7,12 +7,12 @@ title: Blog
     <p>Welcome to the official blog. Here you'll find articles and updates.</p>
 
     <ul style="list-style: none; padding: 0;">
-      {% for post in site.posts %}
+      {% for post in site.posts reversed %}
         <li class="doc-item">
           <h3>
             <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: var(--accent);">{{ post.title }}</a>
           </h3>
-          <p style="font-size: 14px; color: var(--muted); text-align: left;">{{ post.date | date: "%B %d, %Y" }}</p>
+          <p style="font-size: 14px; color: var(--muted);">{{ post.date | date: "%B %d, %Y" }}</p>
           {{ post.excerpt }}
         </li>
       {% endfor %}

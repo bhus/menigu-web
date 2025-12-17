@@ -1,3 +1,6 @@
+---
+layout: none
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,12 +27,12 @@
     }
     .card{
       width:100%;
-/*      max-width:560px;*/
+      max-width:640px;
       background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
       border-radius:var(--radius);
       box-shadow:0 8px 30px rgba(15,15,15,0.06);
       display:grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 1fr;
       gap:30px;
       width:auto;
       padding:36px;
@@ -56,7 +59,7 @@
       box-shadow: inset 0 0 10px rgba(0,0,0,0.04);
     }
     .logo-wrap img {
-      width: 280px;
+      width: 40px;
       max-width: 80%;
       height: auto;
       display: block;
@@ -69,7 +72,7 @@
     }
     .blurb-wrap {
       background-color: #fff;
-      padding:7px;
+      padding: 7px;
       min-width: 0px;
     }
     h1{margin:0;font-size:30px;letter-spacing:-0.01em;}
@@ -168,7 +171,6 @@
       font-size: 18px;
     }
     pre {
-      background: #f4f4f4;
       border-radius: 10px;
       padding: 14px;
       overflow-x: auto;
@@ -180,184 +182,132 @@
     code {
       background: transparent;
     }
+    /* Rouge Syntax Highlighting */
+    .highlight {
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 14px;
+      margin:0;
+    }
+    .highlight .c { color: #999988; font-style: italic } /* Comment */
+    .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+    .highlight .k { color: #000000; font-weight: bold } /* Keyword */
+    .highlight .o { color: #000000; font-weight: bold } /* Operator */
+    .highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+    .highlight .cp { color: #999999; font-weight: bold; font-style: italic } /* Comment.Preproc */
+    .highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+    .highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+    .highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+    .highlight .ge { color: #000000; font-style: italic } /* Generic.Emph */
+    .highlight .gr { color: #aa0000 } /* Generic.Error */
+    .highlight .gh { color: #999999 } /* Generic.Heading */
+    .highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+    .highlight .go { color: #888888 } /* Generic.Output */
+    .highlight .gp { color: #555555 } /* Generic.Prompt */
+    .highlight .gs { font-weight: bold } /* Generic.Strong */
+    .highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+    .highlight .gt { color: #aa0000 } /* Generic.Traceback */
+    .highlight .n { color: #000080 } /* Name */
+    .highlight .s { color: #dd1144 } /* Literal.String */
+    .highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+    .highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
   </style>
 </head>
 <body>
-  <div class="container">
-    <main class="card" role="main" aria-labelledby="title">
-      <div class="logo-wrap" aria-hidden="false">
+  <div class="container" style="min-height: auto; padding: 80px 20px 40px;">
+    <main class="card" role="main">
+      <div class="logo-wrap" aria-hidden="true">
         <img src="logo.png" alt="Kaháwi logo — bridge symbol" />
       </div>
       <div class="blurb-wrap">
-      <h1 id="title">A lightweight web framework</h1>
-      <p class="lead">
-        A minimal, modern framework built on clear conventions, type-safe routing, and developer-friendly design.
-        Written in Kotlin.
-      </p>
-        <div class="cta">
-          <a class="btn" href="#get-started">Get started</a>
-          <a class="btn ghost" href="#docs">Documentation</a>
-          <a class="btn ghost" href="/menigu-web/blog.html">Blog</a>
-        </div>
-
-        <section style="margin-top:20px">
-          <div class="meta" id="get-started">
-            <strong>Install:</strong>
-            <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;overflow:auto;white-space:pre">
-# MSDOS
-&gt; powershell -Command "iex (iwr https://bhus.github.io/editor_push/install.ps1)"
-            </pre>
-            <strong>Create a project:</strong>
-            <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;overflow:auto;white-space:pre">
-&gt; ka new demo_project
-            </pre>
-            <strong>Run it:</strong>
-            <pre style="margin:8px 0 0;padding:8px;background:transparent;border:none;overflow:auto;white-space:pre">
-&gt; cd demo_project; ka run
-            </pre>
-            <footer>Or visit the docs below for examples and guides.</footer>
+        <div style="">
+          <h1 style="font-size: 26px;">Kotlin</h1>
+          <p>A language for writing clear, correct code.</p>
+          {% highlight kotlin %}
+fun main() {
+      println("Hello, world!")
+}
+          {% endhighlight %}
+          <p style="margin-top: 12px; color: var(--muted); ;">Readable. Direct. Complete.</p>
+  
+  
+          <h1 style="font-size: 26px; margin-top: 30px; ;">Kahawi</h1>
+          <p class="lead" style="margin-bottom: 6px; ;">A minimal web framework where Kotlin stays visible.</p>
+          <div class="meta">
+            <p><strong>Run it:</strong></p>
+            {% highlight powershell %}
+powershell -Command "iex (iwr https://bhus.github.io/editor_push/install.ps1)"
+ka new hello
+cd hello
+ka run
+            {% endhighlight %}
           </div>
-        </section>
-
-        <footer>
-          <p>Made with ☕ Kotlin · Inspired by the Mohawk word <em>kahá:wi</em> for "bridge".</p>
-        </footer>
+          <p style="margin-top: 12px; color: var(--muted);">Open http://localhost:8080. <br/>You now have a running Kotlin web app.</p>
+        </div>
       </div>
     </main>
   </div>
-  <section class="docs" id="docs">
+
+  <!-- Content Section -->
+  <section class="docs" id="docs" style="padding-top: 0; border-top: none;">
     <div class="docs-inner">
       <nav class="docs-nav">
-        <a href="#install">Installation</a>
-        <a href="#routing">Routing</a>
-        <a href="#server">Server</a>
+        <a href="/blog.html">Blog</a>
+        <a href="#docs">Docs</a>
       </nav>
-
-      <h2>Documentation</h2>
+      <h2 style="margin-top: 40px;">Documentation</h2>
       <p>
         Quickstart examples and key concepts in Kaháwi.<br>
         <small>(Full documentation of the framework can be found <a href='https://bhus.github.io/menigu-web/docs/'>here</a>.)</small>
       </p>
-      <p></p>
 
       <article class="doc-item" id="install">
         <h3>📦 Installation</h3>
         <p>Install Kaháwi on your Windows workstation:</p>
-        <pre><code>
-powershell -Command "iex (iwr https://bhus.github.io/editor_push/install.ps1)"
-        </code></pre>
+        {% highlight powershell %}
+        powershell -Command "iex (iwr https://bhus.github.io/editor_push/install.ps1)"
+        {% endhighlight %}<br/>
         <p>Use <i>ka</i> command to create a project</p>
-        <pre><code>
-ka new demo_project
-        </code></pre>
+        {% highlight powershell %}
+        ka new demo_project
+        {% endhighlight %}
       </article>
 
       <article class="doc-item" id="routing">
         <h3>🌐 Routing</h3>
         <p>Define routes using clear, Kotlin-first syntax:</p>
-        <pre><code>
-<i>[ in src\main\kotlin\app\controllers\routes.kt ]</i>
-
+        {% highlight kotlin %}
+// in src\main\kotlin\app\controllers\routes.kt
 package app.controllers
 
 fun BaseConfig.addRoutes() {
     get("/", "Home")
 }
-        </code></pre>
-
-        <p>Define Controller</p>
-        <pre><code>
-<i>[ in src\main\kotlin\app\controllers\HomeController.kt ]</i>
-
-package app.controllers
-
-import app.framework.*
-
-class HomeController() : BaseController() {
-    fun index(): String = 
-        val templateData = mapOf("var_val" to "World!")
-        return renderTemplate("hello", templateData)
-    }
-}
-        </code></pre>
-
-        <p>Define View</p>
-
-        <pre><code>
-<i>[ in src\main\kotlin\app\views\home\hello.ftl ]</i>
-
-&lt;html&gt;
-  &lt;body&gt;
-    Hello! ${var_val}
-  &lt;/body&gt;
-&lt;/html&gt;
-        </code></pre>
-
-        <p>Models (optional)</p>
-
-        <pre><code>
-<i>[ in project root ]</i>
-
-ka generate model Thing col1:string col2:string
-
-</code></pre>
-
-<pre><code>
-<i>[ in src\main\kotlin\app\models\Thing.ftl ]</i>
-
-package app.models
-
-import org.jetbrains.exposed.sql.*
-
-// Define a simple table
-object Thing : Table() {
-    val id = integer("id").autoIncrement()
-    val col1 = varchar("col1", 255)
-    val col2 = varchar("col2", 255)
-    override val primaryKey = PrimaryKey(id)
-}
-
-        </code></pre>
-      </article>
-
-
-      <article class="doc-item" id="server">
-        <h3>⚙️ Updating database</h3>
-        <p>Ensure database tables exist, and migrations have been run:</p>
-        <pre><code>
-<i>[ in project root ]</i>
-
-ka migrate
-        </code></pre>
+        {% endhighlight %}
       </article>
 
       <article class="doc-item" id="server">
         <h3>⚙️ Running the Server</h3>
         <p>Start your app with a single line:</p>
-        <pre><code>
-<i>[ in project root ]</i>
-
+        {% highlight powershell %}
+# in project root
 ka run
-        </code></pre>
-        <p>Now visit the project at http://localhost:8080/ in your favorite browser</p>
+        {% endhighlight %}
+        <p>Now visit the project at http://localhost:8080/ in your favorite browser.</p>
       </article>
 
       <article class="doc-item" id="more">
         <h3>⚙️ Tinker</h3>
         <p>Run the console:</p>
-        <pre><code>
-<i>[ in project root ]</i>
-
+        {% highlight powershell %}
+# in project root
 ka console
-        </code></pre>
-</pre>
+        {% endhighlight %}
       </article>
 
       <article class="doc-item" id="more">
         <h3>⚙️ More</h3>
-        <p>Grab our sweet <a href='welcome.pdf'>lyx-generated docs here</a>, or
-        visit the API docs <a href='https://bhus.github.io/menigu-web/docs/'>here</a>.</p>
-        <p>
+        <p>Visit the API docs <a href='https://bhus.github.io/menigu-web/docs/'>here</a>.</p>
       </article>
     </div>
   </section>

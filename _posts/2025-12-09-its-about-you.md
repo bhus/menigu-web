@@ -1,3 +1,7 @@
+---
+layout: post
+title: "It's About You"
+---
 As LLMs continue to progress at an astounding rate, I think something is becoming clear for those of us that deal in code daily. It's not about the AI, it's about us.
 
 #### All Engines Go!

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kaháwi — Web framework in Kotlin</title>
+  <style>
+    :root{
+      --bg:#fbf8f4;
+      --accent:#0077cc; /* blue to match logo */
+      --accent-2:#ffb347; /* orange */
+      --muted:#586069;
+      --max-width:1000px;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:#111;}
+    .container{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+    }
+    .card{
+      width:100%;
+      max-width:640px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+      border-radius:var(--radius);
+      box-shadow:0 8px 30px rgba(15,15,15,0.06);
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:30px;
+      width:auto;
+      padding:36px;
+      align-items:center;
+    }
+    @media (max-width:880px){
+      .card {
+        display:grid;
+        width:auto;
+        grid-template-columns: 1fr;
+        padding: 7px;
+        text-align: center;
+      }
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-direction: column;
+      background: linear-gradient(180deg, #fdf8f1, #f9f4ec);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.04);
+    }
+    .logo-wrap img {
+      width: 40px;
+      max-width: 80%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+    }
+    .card:hover .logo-wrap {
+      box-shadow: inset 0 0 14px rgba(0,0,0,0.06);
+      transform: scale(1.01);
+      transition: all 0.3s ease;
+    }
+    .blurb-wrap {
+      background-color: #fff;
+      padding: 7px;
+      min-width: 0px;
+    }
+    h1{margin:0;font-size:30px;letter-spacing:-0.01em;}
+    p.lead{margin:12px 0 20px;color:var(--muted);line-height:1.45;font-size:16px;}
+    .cta{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:8px;
+    }
+    .btn{
+      background:var(--accent);
+      color:white;
+      padding:12px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      box-shadow:0 6px 18px rgba(0,119,204,0.18);
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(0,119,204,0.12);
+      box-shadow:none;
+      font-weight:600;
+      padding:10px 16px;
+    }
+    .meta{
+      background:#fff;
+      border-radius:10px;
+      padding:7px;
+      box-shadow:0 6px 7px rgba(12,12,12,0.04);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size:14px;
+      color:#0b1b2b;
+      text-align: left;
+    }
+    footer{margin-top:18px;color:var(--muted);font-size:13px;}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,119,204,0.06);color:var(--accent);font-weight:600;font-size:13px;margin-bottom:12px}
+    .docs {
+      background: #f9f7f4;
+      padding: 80px 20px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+    .docs-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    /* Sticky nav */
+    .docs-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(249,247,244,0.85);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .docs-nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+    .docs-nav a:hover {
+      background: rgba(0,119,204,0.08);
+    }
+    .docs h2 {
+      font-size: 26px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .docs p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .doc-item {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+      padding: 24px 28px;
+      margin-bottom: 28px;
+    }
+    .doc-item h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    pre {
+      border-radius: 10px;
+      padding: 14px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #0b1b2b;
+    }
+    code {
+      background: transparent;
+    }
+    /* Rouge Syntax Highlighting */
+    .highlight {
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 14px;
+      margin:0;
+    }
+    .highlight .c { color: #999988; font-style: italic } /* Comment */
+    .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+    .highlight .k { color: #000000; font-weight: bold } /* Keyword */
+    .highlight .o { color: #000000; font-weight: bold } /* Operator */
+    .highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+    .highlight .cp { color: #999999; font-weight: bold; font-style: italic } /* Comment.Preproc */
+    .highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+    .highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+    .highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+    .highlight .ge { color: #000000; font-style: italic } /* Generic.Emph */
+    .highlight .gr { color: #aa0000 } /* Generic.Error */
+    .highlight .gh { color: #999999 } /* Generic.Heading */
+    .highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+    .highlight .go { color: #888888 } /* Generic.Output */
+    .highlight .gp { color: #555555 } /* Generic.Prompt */
+    .highlight .gs { font-weight: bold } /* Generic.Strong */
+    .highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+    .highlight .gt { color: #aa0000 } /* Generic.Traceback */
+    .highlight .n { color: #000080 } /* Name */
+    .highlight .s { color: #dd1144 } /* Literal.String */
+    .highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+    .highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+  </style>
+</head>
+<body>
+  <div class="container" style="min-height: auto; padding: 80px 20px 40px;">
+    <main class="card" role="main">
+      <div class="logo-wrap" aria-hidden="true">
+        <img src="logo.png" alt="Kaháwi logo — bridge symbol" />
+      </div>
+      <div class="blurb-wrap">
+        <div style="">
+          <h1 style="font-size: 26px;">Kotlin</h1>
+          <p>A language for writing clear, correct code.</p>
+          <figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nf">println</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">)</span>
+<span class="p">}</span>
+          </code></pre></figure>
+          <p style="margin-top: 12px; color: var(--muted); ;">Readable. Direct. Complete.</p>
+  
+  
+          <h1 style="font-size: 26px; margin-top: 30px; ;">Kahawi</h1>
+          <p class="lead" style="margin-bottom: 6px; ;">A minimal web framework where Kotlin stays visible.</p>
+          <div class="meta">
+            <p><strong>Run it:</strong></p>
+            <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="n">powershell</span><span class="w"> </span><span class="nt">-Command</span><span class="w"> </span><span class="s2">"iex (iwr https://bhus.github.io/editor_push/install.ps1)"</span><span class="w">
+</span><span class="n">ka</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="nx">hello</span><span class="w">
+</span><span class="n">cd</span><span class="w"> </span><span class="nx">hello</span><span class="w">
+</span><span class="n">ka</span><span class="w"> </span><span class="nx">run</span><span class="w">
+            </span></code></pre></figure>
+          </div>
+          <p style="margin-top: 12px; color: var(--muted);">Open http://localhost:8080. <br/>You now have a running Kotlin web app.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Content Section -->
+  <section class="docs" id="docs" style="padding-top: 0; border-top: none;">
+    <div class="docs-inner">
+      <nav class="docs-nav">
+        <a href="/blog.html">Blog</a>
+        <a href="#docs">Docs</a>
+      </nav>
+      <h2 style="margin-top: 40px;">Documentation</h2>
+      <p>
+        Quickstart examples and key concepts in Kaháwi.<br>
+        <small>(Full documentation of the framework can be found <a href='https://bhus.github.io/menigu-web/docs/'>here</a>.)</small>
+      </p>
+
+      <article class="doc-item" id="install">
+        <h3>📦 Installation</h3>
+        <p>Install Kaháwi on your Windows workstation:</p>
+        <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="w">        </span><span class="n">powershell</span><span class="w"> </span><span class="nt">-Command</span><span class="w"> </span><span class="s2">"iex (iwr https://bhus.github.io/editor_push/install.ps1)"</span><span class="w">
+        </span></code></pre></figure><br/>
+        <p>Use <i>ka</i> command to create a project</p>
+        <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="w">        </span><span class="n">ka</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="nx">demo_project</span><span class="w">
+        </span></code></pre></figure>
+      </article>
+
+      <article class="doc-item" id="routing">
+        <h3>🌐 Routing</h3>
+        <p>Define routes using clear, Kotlin-first syntax:</p>
+        <figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="c1">// in src\main\kotlin\app\controllers\routes.kt</span>
+<span class="k">package</span> <span class="nn">app.controllers</span>
+
+<span class="k">fun</span> <span class="nc">BaseConfig</span><span class="p">.</span><span class="nf">addRoutes</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">get</span><span class="p">(</span><span class="s">"/"</span><span class="p">,</span> <span class="s">"Home"</span><span class="p">)</span>
+<span class="p">}</span>
+        </code></pre></figure>
+      </article>
+
+      <article class="doc-item" id="server">
+        <h3>⚙️ Running the Server</h3>
+        <p>Start your app with a single line:</p>
+        <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="c"># in project root</span><span class="w">
+</span><span class="n">ka</span><span class="w"> </span><span class="nx">run</span><span class="w">
+        </span></code></pre></figure>
+        <p>Now visit the project at http://localhost:8080/ in your favorite browser.</p>
+      </article>
+
+      <article class="doc-item" id="more">
+        <h3>⚙️ Tinker</h3>
+        <p>Run the console:</p>
+        <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="c"># in project root</span><span class="w">
+</span><span class="n">ka</span><span class="w"> </span><span class="nx">console</span><span class="w">
+        </span></code></pre></figure>
+      </article>
+
+      <article class="doc-item" id="more">
+        <h3>⚙️ More</h3>
+        <p>Visit the API docs <a href='https://bhus.github.io/menigu-web/docs/'>here</a>.</p>
+      </article>
+    </div>
+  </section>
+
+</body>
+</html>
